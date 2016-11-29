@@ -6,3 +6,5 @@ for a password. This is used to run commands like 'mount' and 'umount'.
 Furthermore, the user id must be able to ssh to remote hosts without the need
 for a password.
 for debugging purposes you can use --nomount flag
+
+
