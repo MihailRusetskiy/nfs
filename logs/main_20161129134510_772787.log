@@ -1,0 +1,120 @@
+    OPTS: 13:45:10.773204 - main.py
+
+    OPTS: 13:45:10.773303 - basename = 
+    OPTS: 13:45:10.773350 - bugmsgs = None
+    OPTS: 13:45:10.773387 - createlog = False
+    OPTS: 13:45:10.773422 - createtraces = False
+    OPTS: 13:45:10.773456 - datadir = 
+    OPTS: 13:45:10.773488 - export = /
+    OPTS: 13:45:10.773520 - file = 
+    OPTS: 13:45:10.773552 - filesize = 65536
+    OPTS: 13:45:10.773585 - ignore = False
+    OPTS: 13:45:10.773617 - interface = None
+    OPTS: 13:45:10.773653 - iodelay = 0.1
+    OPTS: 13:45:10.773695 - iptables = /usr/sbin/iptables
+    OPTS: 13:45:10.773727 - keeptraces = False
+    OPTS: 13:45:10.773757 - messages = /var/logs/messages
+    OPTS: 13:45:10.773788 - mtopts = hard,rsize=4096,wsize=4096
+    OPTS: 13:45:10.773818 - mtpoint = /mnt/t
+    OPTS: 13:45:10.773849 - nfiles = 2
+    OPTS: 13:45:10.773905 - nfsdebug = 
+    OPTS: 13:45:10.773941 - nfsversion = 4.0
+    OPTS: 13:45:10.773973 - nocleanup = False
+    OPTS: 13:45:10.774005 - nomount = True
+    OPTS: 13:45:10.774039 - offset_delta = 4096
+    OPTS: 13:45:10.774070 - port = 2049
+    OPTS: 13:45:10.777144 - proto = tcp
+    OPTS: 13:45:10.777208 - rmtraces = False
+    OPTS: 13:45:10.777251 - rpcdebug = 
+    OPTS: 13:45:10.777288 - rsize = 4096
+    OPTS: 13:45:10.777323 - runtest = all
+    OPTS: 13:45:10.777358 - sec = sys
+    OPTS: 13:45:10.777390 - server = 
+    OPTS: 13:45:10.777422 - sudo = /usr/bin/sudo
+    OPTS: 13:45:10.777456 - tag = 
+    OPTS: 13:45:10.777487 - tbsize = 50000
+    OPTS: 13:45:10.777519 - tcpdump = /usr/sbin/tcpdump
+    OPTS: 13:45:10.777550 - tmpdir = /tmp
+    OPTS: 13:45:10.777584 - trcdelay = 0.0
+    OPTS: 13:45:10.777621 - tverbose = 1
+    OPTS: 13:45:10.777651 - verbose = none
+    OPTS: 13:45:10.777682 - warnings = False
+    OPTS: 13:45:10.777714 - wsize = 4096
+
+    INFO: 13:45:10.777754 - SYSTEM: Linux hadoop.com 4.8.7 #1 SMP Sat Nov 12 13:33:33 MSK 2016 x86_64
+    DBG1: 13:45:10.860768 - Get routing info: ip route get 109.234.36.135
+    DBG6: 13:45:10.880831 - Network reset: /usr/sbin/iptables --flush
+    DBG6: 13:45:10.885088 - Network reset: /usr/sbin/iptables --delete-chain
+    DBG7: 13:45:10.892530 - SETUP starts
+    DBG3: 13:45:10.892769 - Creating mount point directory: mkdir -p /mnt/t
+    DBG3: 13:45:10.908977 - Creating file [/mnt/t/main_20161129134510_772787_f_1] 65536@0
+    DBG3: 13:45:10.911297 - Creating file [/mnt/t/main_20161129134510_772787_f_2] 65536@0
+    DBG7: 13:45:10.913438 - SETUP done
+    TIME: 0.145629s
+
+*** Verify access for existing file
+    TEST: Running test 'access_exist_file'
+    DBG3: 13:45:10.913625 - Creating file [/mnt/t/main_20161129134510_772787_f_3] 65536@0
+    PASS: access - file access allowed with mode F_OK
+    TIME: 0.002262s
+
+*** Verify access for non-existing file
+    TEST: Running test 'access_non_exist_file'
+    DBG3: 13:45:10.915847 - Creating file [/mnt/t/main_20161129134510_772787_f_4] 65536@0
+    PASS: access - file access not allowed with mode F_OK for a non-existent file
+    TIME: 0.002176s
+
+*** Verify access with mode R_OK
+    TEST: Running test 'access_perm_read'
+    DBG3: 13:45:10.918024 - Creating file [/mnt/t/main_20161129134510_772787_f_5] 65536@0
+    PASS: access - file access allowed with mode R_OK for file with permissions 0777
+    TIME: 0.016507s
+
+*** Verify access with mode W_OK
+    TEST: Running test 'access_perm_write'
+    DBG3: 13:45:10.934561 - Creating file [/mnt/t/main_20161129134510_772787_f_6] 65536@0
+    PASS: access - file access allowed with mode W_OK for file with permissions 0777
+    TIME: 0.002325s
+
+*** Verify access with mode X_OK
+    TEST: Running test 'access_perm_del'
+    DBG3: 13:45:10.936857 - Creating file [/mnt/t/main_20161129134510_772787_f_7] 65536@0
+    PASS: access - file access allowed with mode X_OK for file with permissions 0777
+    TIME: 0.035641s
+
+*** Read data from a file
+    TEST: Running test 'read'
+    DBG3: 13:45:10.972516 - Open file /mnt/t/main_20161129134510_772787_f_1 for reading
+    PASS: read - reading file should succeed
+    TIME: 1.003393s
+
+*** Write a pattern the file
+    TEST: Running test 'write'
+    DBG3: 13:45:11.975931 - Open file /mnt/t/main_20161129134510_772787_f_8 for writing
+    DBG3: 13:45:12.977288 - Write data to file /mnt/t/main_20161129134510_772787_f_8 at offset = 0 using POSIX API write()
+    PASS: write - writing N bytes should return N
+    TIME: 1.003868s
+
+*** Verify creating a symbolic link
+    TEST: Running test 'symlink'
+    DBG3: 13:45:12.979799 - Create symbolic link /mnt/t/main_20161129134510_772787_f_9 -> /mnt/t/main_20161129134510_772787_f_1 using POSIX API symlink()
+    PASS: symlink - object type should be a symbolic link
+    DBG7: 13:45:12.979998 - CLEANUP starts
+    DBG5: 13:45:12.980124 -     Removing file [/mnt/t/main_20161129134510_772787_f_9]
+    DBG5: 13:45:12.980226 -     Removing file [/mnt/t/main_20161129134510_772787_f_8]
+    DBG5: 13:45:12.980331 -     Removing file [/mnt/t/main_20161129134510_772787_f_7]
+    DBG5: 13:45:12.980432 -     Removing file [/mnt/t/main_20161129134510_772787_f_6]
+    DBG5: 13:45:12.980541 -     Removing file [/mnt/t/main_20161129134510_772787_f_5]
+    DBG5: 13:45:12.980679 -     Removing file [/mnt/t/main_20161129134510_772787_f_4]
+    DBG5: 13:45:12.980776 -     Removing file [/mnt/t/main_20161129134510_772787_f_3]
+    DBG5: 13:45:12.980882 -     Removing file [/mnt/t/main_20161129134510_772787_f_2]
+    DBG5: 13:45:12.981017 -     Removing file [/mnt/t/main_20161129134510_772787_f_1]
+    DBG7: 13:45:12.981163 - CLEANUP done
+    TIME: 0.006186s
+
+    DBG7: 13:45:12.985949 - Calling PosixTest() destructor
+    DBG3: 13:45:12.986059 - Removing mount point directory: rmdir /mnt/t
+
+8 tests (8 passed, 0 failed)
+
+Total time: 2.221997s
